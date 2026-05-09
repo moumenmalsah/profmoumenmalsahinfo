@@ -27,8 +27,8 @@ export default function About() {
             <div className="absolute -top-10 -left-10 w-40 h-40 bg-brand-primary/10 rounded-full blur-2xl" />
             <div className="relative z-10 rounded-[2.5rem] overflow-hidden border-4 border-white dark:border-slate-800 shadow-2xl">
               <img 
-                src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800" 
-                alt="Enseignement Moderne" 
+                src="/about_me.jpg" 
+                alt="Professeur Malsah Moumen" 
                 className="w-full aspect-[4/5] object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
