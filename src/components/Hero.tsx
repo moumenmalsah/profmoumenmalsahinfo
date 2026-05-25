@@ -88,7 +88,7 @@ export default function Hero() {
              <div className="absolute inset-0 bg-brand-primary rounded-[3rem] rotate-6 opacity-10 blur-2xl" />
              <div className="relative h-full w-full rounded-[2.5rem] overflow-hidden border-8 border-white dark:border-slate-800 shadow-2xl glass transform -rotate-3 hover:rotate-0 transition-transform duration-700">
                 <img 
-                  src="../../public/hero.jpg" 
+                  src="/IMG_1962.jpg" 
                   alt="Educational Background" 
                   className="w-full h-full object-cover"
                 />
