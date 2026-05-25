@@ -29,11 +29,11 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="py-24 relative bg-white dark:bg-slate-950">
+    <section className="py-24 relative bg-white ">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-emerald-600 font-bold tracking-widest uppercase text-[10px] mb-4">Témoignages</h2>
-          <h3 className="text-4xl font-black mb-6 text-slate-900 dark:text-white leading-tight">La réussite <span className="text-emerald-600 underline underline-offset-8">partagée.</span></h3>
+          <h3 className="text-4xl font-black mb-6 text-slate-900  leading-tight">La réussite <span className="text-emerald-600 underline underline-offset-8">partagée.</span></h3>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
@@ -44,7 +44,7 @@ export default function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className="p-6 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl relative group shadow-sm hover:shadow-xl transition-all"
+              className="p-6 bg-white  border border-slate-200  rounded-2xl relative group shadow-sm hover:shadow-xl transition-all"
             >
               <div className="absolute top-6 right-6 text-emerald-500 opacity-10 group-hover:opacity-40 transition-opacity">
                 <Quote size={20} />
@@ -54,16 +54,16 @@ export default function Testimonials() {
                 {[1, 2, 3, 4, 5].map(s => <Star key={s} size={12} fill="currentColor" />)}
               </div>
 
-              <p className="text-slate-600 dark:text-slate-400 font-medium text-sm mb-6 leading-relaxed">
+              <p className="text-slate-600  font-medium text-sm mb-6 leading-relaxed">
                 "{t.content}"
               </p>
 
-              <div className="flex items-center gap-3 pt-6 border-t border-slate-100 dark:border-slate-700">
+              <div className="flex items-center gap-3 pt-6 border-t border-slate-100 ">
                 <div className="w-10 h-10 rounded-lg overflow-hidden bg-slate-50 border border-slate-100">
                   <img src={t.avatar} alt={t.name} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-slate-900 dark:text-white text-sm">{t.name}</h4>
+                  <h4 className="font-bold text-slate-900  text-sm">{t.name}</h4>
                   <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{t.role}</p>
                 </div>
               </div>

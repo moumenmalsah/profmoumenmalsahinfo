@@ -21,11 +21,11 @@ const skills = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-24 relative overflow-hidden bg-white dark:bg-slate-950">
+    <section id="skills" className="py-24 relative overflow-hidden bg-white ">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center gap-3 mb-12">
           <span className="w-1.5 h-8 bg-emerald-500 rounded-full"></span>
-          <h3 className="text-2xl font-bold text-slate-900 dark:text-white">Expertise Technologique</h3>
+          <h3 className="text-2xl font-bold text-slate-900 ">Expertise Technologique</h3>
         </div>
 
         <div className="grid md:grid-cols-2 gap-x-12 gap-y-10">
@@ -39,10 +39,10 @@ export default function Skills() {
               className="space-y-4"
             >
               <div className="flex items-center justify-between">
-                <span className="text-sm font-semibold text-slate-600 dark:text-slate-400">{skill.name}</span>
+                <span className="text-sm font-semibold text-slate-600 ">{skill.name}</span>
                 <span className="text-xs font-bold text-emerald-600 font-mono">{skill.level}%</span>
               </div>
-              <div className="h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+              <div className="h-1.5 bg-slate-100  rounded-full overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
                   whileInView={{ width: `${skill.level}%` }}

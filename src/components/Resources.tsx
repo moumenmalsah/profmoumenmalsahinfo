@@ -35,7 +35,7 @@ export default function Resources() {
   );
 
   return (
-    <section id="resources" className="py-24 bg-slate-50 dark:bg-slate-900/50 relative overflow-hidden">
+    <section id="resources" className="py-24 bg-slate-50  relative overflow-hidden">
       <div className="absolute top-0 right-0 p-20 opacity-5 -rotate-12">
         <Book size={400} />
       </div>
@@ -64,7 +64,7 @@ export default function Resources() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-lg mb-10"
+            className="text-slate-600  max-w-2xl mx-auto text-lg mb-10"
           >
             Accédez à une bibliothèque complète de cours, d'exercices et de vidéos pour chaque niveau scolaire.
           </motion.p>
@@ -75,12 +75,12 @@ export default function Resources() {
                 <input 
                   type="text" 
                   placeholder="Rechercher un cours, exercice..." 
-                  className="w-full pl-12 pr-4 py-3 rounded-2xl bg-white dark:bg-slate-800 border-none shadow-lg focus:ring-2 focus:ring-brand-primary transition-all"
+                  className="w-full pl-12 pr-4 py-3 rounded-2xl bg-white  border-none shadow-lg focus:ring-2 focus:ring-brand-primary transition-all"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
              </div>
-             <button className="flex items-center gap-2 px-6 py-3 glass rounded-2xl font-bold text-slate-700 dark:text-white hover:bg-white transition-all">
+             <button className="flex items-center gap-2 px-6 py-3 glass rounded-2xl font-bold text-slate-700  hover:bg-white transition-all">
                 <Filter size={20} />
                 Filtres Avancés
              </button>
@@ -96,7 +96,7 @@ export default function Resources() {
               className={`px-8 py-4 rounded-2xl font-bold transition-all transform hover:scale-105 flex items-center gap-3 ${
                 activeLevel === level.id 
                   ? 'bg-brand-primary text-white shadow-xl shadow-brand-primary/20 scale-105' 
-                  : 'glass text-slate-600 dark:text-slate-300 hover:bg-white'
+                  : 'glass text-slate-600  hover:bg-white'
               }`}
             >
               <Layers size={20} />
@@ -116,26 +116,26 @@ export default function Resources() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.3 }}
-                className="group bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-emerald-500/50 transition-all flex flex-col justify-between shadow-sm hover:shadow-xl"
+                className="group bg-white  p-5 rounded-2xl border border-slate-200  hover:border-emerald-500/50 transition-all flex flex-col justify-between shadow-sm hover:shadow-xl"
               >
                 <div>
                   <div className="flex justify-between items-start mb-4">
-                    <span className="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 text-[10px] px-2 py-1 rounded-md font-bold uppercase tracking-widest group-hover:bg-emerald-100 group-hover:text-emerald-700 transition-colors">
+                    <span className="bg-slate-100  text-slate-600  text-[10px] px-2 py-1 rounded-md font-bold uppercase tracking-widest group-hover:bg-emerald-100 group-hover:text-emerald-700 transition-colors">
                       {res.level}
                     </span>
                     <span className="text-[10px] font-bold text-slate-400">{res.type}</span>
                   </div>
                   
-                  <h4 className="text-lg font-bold text-slate-800 dark:text-white mb-2">{res.title}</h4>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 mb-6 font-medium">Informatique & Technologies</p>
+                  <h4 className="text-lg font-bold text-slate-800  mb-2">{res.title}</h4>
+                  <p className="text-xs text-slate-500  mb-6 font-medium">Informatique & Technologies</p>
                 </div>
 
                 <div className="space-y-3">
-                  <div className="flex items-center gap-2 text-[11px] text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-700 p-2 rounded-lg">
+                  <div className="flex items-center gap-2 text-[11px] text-slate-600  bg-slate-50  border border-slate-100  p-2 rounded-lg">
                     <res.icon size={14} className="text-emerald-600" />
                     {res.downloads} téléchargements
                   </div>
-                  <button className="w-full py-2 bg-slate-900 dark:bg-slate-700 group-hover:bg-emerald-600 text-white rounded-lg text-xs font-bold transition-all">
+                  <button className="w-full py-2 bg-slate-900  group-hover:bg-emerald-600 text-white rounded-lg text-xs font-bold transition-all">
                     Consulter
                   </button>
                 </div>
@@ -145,8 +145,8 @@ export default function Resources() {
         </div>
         
         {filteredResources.length === 0 && (
-          <div className="text-center py-20 bg-white dark:bg-slate-800 rounded-[2.5rem] shadow-inner">
-             <div className="w-20 h-20 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4 text-slate-400">
+          <div className="text-center py-20 bg-white  rounded-[2.5rem] shadow-inner">
+             <div className="w-20 h-20 bg-slate-100  rounded-full flex items-center justify-center mx-auto mb-4 text-slate-400">
                 <Search size={40} />
              </div>
              <p className="text-slate-500 font-medium">Aucun résultat trouvé pour votre recherche.</p>

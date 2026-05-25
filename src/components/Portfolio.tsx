@@ -73,7 +73,7 @@ export default function Portfolio() {
   const filteredProjects = projects.filter(p => filter === "Tous" || p.category === filter);
 
   return (
-    <section id="portfolio" className="py-24 relative bg-white dark:bg-slate-950">
+    <section id="portfolio" className="py-24 relative bg-white ">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <motion.h2 
@@ -102,7 +102,7 @@ export default function Portfolio() {
                 className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all ${
                   filter === cat 
                     ? 'bg-brand-primary text-white shadow-lg' 
-                    : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200'
+                    : 'bg-slate-100  text-slate-600  hover:bg-slate-200'
                 }`}
               >
                 {cat}
@@ -121,7 +121,7 @@ export default function Portfolio() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.4, delay: idx * 0.1 }}
-                className="group bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all"
+                className="group bg-slate-50  border border-slate-200  rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all"
               >
                 <div className="h-48 overflow-hidden">
                   <img 
@@ -132,21 +132,21 @@ export default function Portfolio() {
                 </div>
                 <div className="p-6">
                    <div className="flex items-center gap-2 mb-4">
-                      <span className="bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 text-[10px] px-2 py-1 rounded-md font-bold uppercase tracking-widest">{project.category}</span>
+                      <span className="bg-emerald-100  text-emerald-700  text-[10px] px-2 py-1 rounded-md font-bold uppercase tracking-widest">{project.category}</span>
                    </div>
                    
-                   <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-3">{project.title}</h4>
-                   <p className="text-slate-500 dark:text-slate-400 text-sm mb-6 line-clamp-2 leading-relaxed">{project.desc}</p>
+                   <h4 className="text-xl font-bold text-slate-900  mb-3">{project.title}</h4>
+                   <p className="text-slate-500  text-sm mb-6 line-clamp-2 leading-relaxed">{project.desc}</p>
                    
                    <div className="flex flex-wrap gap-2 mb-6">
                       {project.tech.map(t => (
-                        <span key={t} className="text-[10px] font-bold px-2 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 rounded uppercase tracking-wider">{t}</span>
+                        <span key={t} className="text-[10px] font-bold px-2 py-1 bg-white  border border-slate-200  text-slate-500  rounded uppercase tracking-wider">{t}</span>
                       ))}
                    </div>
                    
                    <motion.button
                      whileHover={{ x: 5 }}
-                     className="w-full py-2.5 bg-slate-900 dark:bg-slate-700 group-hover:bg-emerald-600 text-white rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-2"
+                     className="w-full py-2.5 bg-slate-900  group-hover:bg-emerald-600 text-white rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-2"
                    >
                      Consulter
                      <ExternalLink size={14} />
