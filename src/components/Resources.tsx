@@ -132,7 +132,7 @@ export default function Resources() {
 
                 <div className="space-y-3">
                   <div className="flex items-center gap-2 text-[11px] text-slate-600  bg-slate-50  border border-slate-100  p-2 rounded-lg">
-                    {(typeIcons[res.type] || Book)({ size: 14, className: "text-emerald-600" })}
+                    {(() => { const Ic = typeIcons[res.type] || Book; return <Ic size={14} className="text-emerald-600" />; })()}
                     {res.downloads} téléchargements
                   </div>
                   <button className="w-full py-2 bg-slate-900  group-hover:bg-emerald-600 text-white rounded-lg text-xs font-bold transition-all">
