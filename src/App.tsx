@@ -50,5 +50,5 @@ export default function App() {
   }, []);
 
   if (page.startsWith('/teacher')) return <TeacherPanel />;
-  return <HomePage />;
+  return <div className="relative antialiased selection:bg-brand-primary selection:text-white"><ScrollProgress /><HomePage /></div>;
 }
