@@ -4,9 +4,14 @@
  */
 
 import { motion } from 'motion/react';
-import { Mail, Phone, MapPin, Send, Facebook, Linkedin, Twitter, Globe } from 'lucide-react';
+import { Mail, MapPin, Send, Facebook, Linkedin, Globe, Instagram } from 'lucide-react';
 
 export default function Contact() {
+  const socials = [
+    { Icon: Facebook, href: "https://www.facebook.com/ProfMalsahMoumen", label: "Facebook" },
+    { Icon: Instagram, href: "https://www.instagram.com/moumen_malsah/", label: "Instagram" },
+    { Icon: Linkedin, href: "https://www.linkedin.com/in/moumen-malsah-367ba9306/", label: "LinkedIn" },
+  ];
   return (
     <section id="contact" className="py-24 relative overflow-hidden bg-white ">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full -z-10 opacity-[0.02] pointer-events-none">
@@ -51,17 +56,20 @@ export default function Contact() {
 
             <div className="pt-8 border-t border-slate-100 ">
                <p className="font-bold text-slate-900  mb-6 uppercase tracking-widest text-[10px]">Suivez mon travail</p>
-               <div className="flex gap-3">
-                  {[Facebook, Linkedin, Twitter].map((Icon, idx) => (
-                    <motion.a 
-                      key={idx}
-                      href="#"
-                      whileHover={{ y: -3, color: '#059669' }}
-                      className="w-10 h-10 rounded-lg bg-slate-50  text-slate-500  transition-all border border-slate-200  flex items-center justify-center"
-                    >
-                      <Icon size={18} />
-                    </motion.a>
-                  ))}
+                <div className="flex gap-3">
+                   {socials.map(({ Icon, href, label }) => (
+                     <motion.a 
+                       key={label}
+                       href={href}
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       whileHover={{ y: -3, color: '#059669' }}
+                       className="w-10 h-10 rounded-lg bg-slate-50  text-slate-500  transition-all border border-slate-200  flex items-center justify-center"
+                       title={label}
+                     >
+                       <Icon size={18} />
+                     </motion.a>
+                   ))}
                </div>
             </div>
           </motion.div>
@@ -72,26 +80,35 @@ export default function Contact() {
             viewport={{ once: true }}
             className="bg-white  p-8 rounded-3xl shadow-xl border border-slate-100 "
           >
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={(e) => {
+              e.preventDefault();
+              const fd = new FormData(e.currentTarget);
+              const msg = { nom: fd.get('nom'), email: fd.get('email'), sujet: fd.get('sujet'), message: fd.get('message'), date: new Date().toISOString() };
+              const msgs = JSON.parse(localStorage.getItem('contact_messages') || '[]');
+              msgs.push(msg);
+              localStorage.setItem('contact_messages', JSON.stringify(msgs));
+              alert('Message envoyé avec succès !');
+              e.currentTarget.reset();
+            }}>
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                    <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">Nom</label>
-                   <input type="text" placeholder="Ahmed Alaoui" className="w-full px-4 py-3 rounded-lg bg-slate-50  border border-slate-200  text-sm focus:ring-2 focus:ring-emerald-500 outline-none transition-all" />
+                   <input required name="nom" type="text" placeholder="Ahmed Alaoui" className="w-full px-4 py-3 rounded-lg bg-slate-50  border border-slate-200  text-sm focus:ring-2 focus:ring-emerald-500 outline-none transition-all" />
                 </div>
                 <div className="space-y-2">
                    <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">Email</label>
-                   <input type="email" placeholder="ahmed@gmail.com" className="w-full px-4 py-3 rounded-lg bg-slate-50  border border-slate-200  text-sm focus:ring-2 focus:ring-emerald-500 outline-none transition-all" />
+                   <input required name="email" type="email" placeholder="ahmed@gmail.com" className="w-full px-4 py-3 rounded-lg bg-slate-50  border border-slate-200  text-sm focus:ring-2 focus:ring-emerald-500 outline-none transition-all" />
                 </div>
               </div>
               
               <div className="space-y-2">
                  <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">Sujet</label>
-                 <input type="text" placeholder="Proposition de collaboration..." className="w-full px-4 py-3 rounded-lg bg-slate-50  border border-slate-200  text-sm focus:ring-2 focus:ring-emerald-500 outline-none transition-all" />
+                 <input required name="sujet" type="text" placeholder="Proposition de collaboration..." className="w-full px-4 py-3 rounded-lg bg-slate-50  border border-slate-200  text-sm focus:ring-2 focus:ring-emerald-500 outline-none transition-all" />
               </div>
               
               <div className="space-y-2">
                  <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">Message</label>
-                 <textarea rows={4} placeholder="Votre message ici..." className="w-full px-4 py-3 rounded-lg bg-slate-50  border border-slate-200  text-sm focus:ring-2 focus:ring-emerald-500 outline-none transition-all resize-none"></textarea>
+                 <textarea required name="message" rows={4} placeholder="Votre message ici..." className="w-full px-4 py-3 rounded-lg bg-slate-50  border border-slate-200  text-sm focus:ring-2 focus:ring-emerald-500 outline-none transition-all resize-none"></textarea>
               </div>
 
               <motion.button

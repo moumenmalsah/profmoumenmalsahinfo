@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -15,14 +16,13 @@ import Blog from './components/Blog';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ScrollProgress from './components/ScrollProgress';
-import WhatsAppBtn from './components/WhatsAppBtn';
+import TeacherBtn from './components/TeacherBtn';
+import TeacherPanel from './components/TeacherPanel';
 
-export default function App() {
+function HomePage() {
   return (
-    <div className="relative antialiased selection:bg-brand-primary selection:text-white">
-      <ScrollProgress />
+    <>
       <Navbar />
-      
       <main>
         <Hero />
         <About />
@@ -34,9 +34,20 @@ export default function App() {
         <Blog />
         <Contact />
       </main>
-
       <Footer />
-      <WhatsAppBtn />
+      <TeacherBtn />
+    </>
+  );
+}
+
+export default function App() {
+  return (
+    <div className="relative antialiased selection:bg-brand-primary selection:text-white">
+      <ScrollProgress />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/teacher" element={<TeacherPanel />} />
+      </Routes>
     </div>
   );
 }
