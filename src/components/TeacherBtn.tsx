@@ -4,7 +4,7 @@ import { GraduationCap } from 'lucide-react';
 export default function TeacherBtn() {
   return (
     <motion.a
-      href="/teacher"
+      href="#/teacher"
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       whileHover={{ scale: 1.1 }}
