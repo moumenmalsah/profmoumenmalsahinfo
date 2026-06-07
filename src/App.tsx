@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Routes, Route } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -41,13 +41,14 @@ function HomePage() {
 }
 
 export default function App() {
-  return (
-    <div className="relative antialiased selection:bg-brand-primary selection:text-white">
-      <ScrollProgress />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/teacher" element={<TeacherPanel />} />
-      </Routes>
-    </div>
-  );
+  const [page, setPage] = useState(window.location.pathname);
+
+  useEffect(() => {
+    const onPop = () => setPage(window.location.pathname);
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  }, []);
+
+  if (page.startsWith('/teacher')) return <TeacherPanel />;
+  return <HomePage />;
 }

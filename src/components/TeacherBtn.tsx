@@ -3,8 +3,8 @@ import { GraduationCap } from 'lucide-react';
 
 export default function TeacherBtn() {
   return (
-    <motion.a
-      href="#/teacher"
+    <motion.div
+      onClick={() => { window.location.pathname = '/teacher'; }}
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       whileHover={{ scale: 1.1 }}
@@ -13,6 +13,6 @@ export default function TeacherBtn() {
       title="Espace Enseignant"
     >
       <GraduationCap size={22} strokeWidth={2} />
-    </motion.a>
+    </motion.div>
   );
 }

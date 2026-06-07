@@ -36,7 +36,7 @@ function LoginForm({ onLogin }: { onLogin: () => void }) {
             <LogIn size={18} /> Se connecter
           </motion.button>
         </form>
-        <a href="#/" className="block text-center mt-6 text-sm text-slate-400 hover:text-emerald-600 transition-colors font-medium">← Retour au site</a>
+        <div onClick={() => { window.location.pathname = '/'; }} className="block text-center mt-6 text-sm text-slate-400 hover:text-emerald-600 transition-colors font-medium cursor-pointer">← Retour au site</div>
       </motion.div>
     </div>
   );
@@ -332,9 +332,9 @@ function Dashboard() {
       <div className="max-w-6xl mx-auto px-6 py-12">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <a href="#/" className="text-sm text-slate-400 hover:text-emerald-600 transition-colors font-medium flex items-center gap-1 mb-2">
+            <div onClick={() => { window.location.pathname = '/'; }} className="text-sm text-slate-400 hover:text-emerald-600 transition-colors font-medium flex items-center gap-1 mb-2 cursor-pointer">
               <ArrowLeft size={14} /> Retour au site
-            </a>
+            </div>
             <h1 className="text-3xl font-black text-slate-900">Tableau de Bord</h1>
             <p className="text-slate-400 text-sm font-medium mt-1">Gérez votre portfolio et vos ressources</p>
           </div>
