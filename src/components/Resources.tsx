@@ -3,9 +3,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Book, FileText, Download, Play, Search, Filter, Layers, CheckCircle } from 'lucide-react';
+import { Book, FileText, Download, Play, Search, Filter, Layers } from 'lucide-react';
+import { getResources } from '../lib/data';
 
 const levels = [
   { id: '2apic', name: '2APIC', description: 'Deuxième année du cycle secondaire collégial' },
@@ -13,24 +14,23 @@ const levels = [
   { id: 'tcl', name: 'Tronc Commun', description: 'Tronc Commun Littéraire et Scientifique' },
 ];
 
-const resources = [
-  { level: '2apic', type: 'PDF', title: 'Cours d\'Algorithmique', slug: 'algo-pdf', icon: FileText, downloads: 1240 },
-  { level: '2apic', type: 'Vidéo', title: 'Introduction au HTML', slug: 'html-intro-video', icon: Play, downloads: 850 },
-  { level: '2apic', type: 'Exercice', title: 'TP Tableur Excel', slug: 'excel-tp', icon: Book, downloads: 620 },
-  { level: '3apic', type: 'PDF', title: 'Base de données', slug: 'db-pdf', icon: FileText, downloads: 2100 },
-  { level: '3apic', type: 'Exercice', title: 'Exercices SQL', slug: 'sql-exercises', icon: Book, downloads: 1540 },
-  { level: '3apic', type: 'Vidéo', title: 'Réseaux locaux (LAN)', slug: 'lan-video', icon: Play, downloads: 980 },
-  { level: 'tcl', type: 'PDF', title: 'Système d\'exploitation', slug: 'os-pdf', icon: FileText, downloads: 3200 },
-  { level: 'tcl', type: 'Exercice', title: 'Maintenance PC', slug: 'pc-maint', icon: Book, downloads: 1100 },
-  { level: 'tcl', type: 'Vidéo', title: 'Algorithmique Avancée', slug: 'algo-adv', icon: Play, downloads: 2500 },
-];
+const typeIcons: Record<string, any> = {
+  PDF: FileText, Vidéo: Play, Exercice: Book, Autre: Book,
+};
 
 export default function Resources() {
   const [activeLevel, setActiveLevel] = useState('2apic');
   const [searchTerm, setSearchTerm] = useState('');
+  const [resources, setResources] = useState(getResources);
 
-  const filteredResources = resources.filter(res => 
-    res.level === activeLevel && 
+  useEffect(() => {
+    const handleStorage = () => setResources(getResources());
+    window.addEventListener('storage', handleStorage);
+    return () => window.removeEventListener('storage', handleStorage);
+  }, []);
+
+  const filteredResources = resources.filter(res =>
+    res.level === activeLevel &&
     res.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -132,7 +132,7 @@ export default function Resources() {
 
                 <div className="space-y-3">
                   <div className="flex items-center gap-2 text-[11px] text-slate-600  bg-slate-50  border border-slate-100  p-2 rounded-lg">
-                    <res.icon size={14} className="text-emerald-600" />
+                    {(typeIcons[res.type] || Book)({ size: 14, className: "text-emerald-600" })}
                     {res.downloads} téléchargements
                   </div>
                   <button className="w-full py-2 bg-slate-900  group-hover:bg-emerald-600 text-white rounded-lg text-xs font-bold transition-all">

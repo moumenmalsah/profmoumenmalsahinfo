@@ -3,34 +3,19 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Calendar, ChevronRight, User } from 'lucide-react';
-
-const posts = [
-  {
-    title: "Le futur de l'Intelligence Artificielle dans les écoles marocaines",
-    desc: "Comment l'IA va transformer la façon dont nous enseignons et apprenons l'informatique.",
-    date: "15 Mai, 2024",
-    category: "Actualités",
-    img: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=400",
-  },
-  {
-    title: "5 conseils pour réussir son projet de fin d'année en 3APIC",
-    desc: "Méthodologie, outils et astuces pour impressionner le jury avec votre projet informatique.",
-    date: "10 Avr, 2024",
-    category: "Conseils",
-    img: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&q=80&w=400",
-  },
-  {
-    title: "Pourquoi apprendre le Python dès le collège ?",
-    desc: "Découvrez les avantages de ce langage polyvalent et accessible pour les débutants.",
-    date: "22 Mar, 2024",
-    category: "Programmation",
-    img: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=400",
-  },
-];
+import { Calendar, ChevronRight } from 'lucide-react';
+import { getBlog } from '../lib/data';
 
 export default function Blog() {
+  const [posts, setPosts] = useState(getBlog);
+
+  useEffect(() => {
+    const handleStorage = () => setPosts(getBlog());
+    window.addEventListener('storage', handleStorage);
+    return () => window.removeEventListener('storage', handleStorage);
+  }, []);
   return (
     <section className="py-24 bg-slate-50 ">
       <div className="max-w-7xl mx-auto px-6">
@@ -51,7 +36,7 @@ export default function Blog() {
         <div className="grid md:grid-cols-3 gap-8">
           {posts.map((post, idx) => (
             <motion.article
-              key={post.title}
+              key={post.id || post.title}
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

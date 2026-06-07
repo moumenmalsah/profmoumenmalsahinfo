@@ -3,9 +3,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ExternalLink, Tag, Code, Palette, Cpu, Shield, Database } from 'lucide-react';
+import { ExternalLink, Code, Palette, Cpu, Shield, Database, Tag } from 'lucide-react';
+import { getPortfolio } from '../lib/data';
 
 const categories = [
   "Tous",
@@ -16,59 +17,23 @@ const categories = [
   "Programmation",
 ];
 
-const projects = [
-  {
-    title: "Plateforme LearnIT",
-    category: "Développement Web",
-    desc: "Un LMS moderne pour les élèves du collège avec exercices interactifs.",
-    tech: ["React", "Firebase", "Tailwind"],
-    icon: Code,
-    img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=400",
-  },
-  {
-    title: "AI Math Assistant",
-    category: "Intelligence Artificielle",
-    desc: "Application de résolution de problèmes mathématiques par reconnaissance d'image.",
-    tech: ["Python", "TensorFlow", "OpenCV"],
-    icon: Cpu,
-    img: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&q=80&w=400",
-  },
-  {
-    title: "Support Réseaux 3APIC",
-    category: "Supports Pédagogiques",
-    desc: "Guide complet sur la topologie des réseaux et administration locale.",
-    tech: ["PowerPoint", "Canva", "Diagrams"],
-    icon: Tag,
-    img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc48?auto=format&fit=crop&q=80&w=400",
-  },
-  {
-    title: "Cyber-Safe Junior",
-    category: "Projets Éducatifs",
-    desc: "Programme de sensibilisation aux dangers d'internet pour les collégiens.",
-    tech: ["Atelier", "Design", "Social"],
-    icon: Shield,
-    img: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=400",
-  },
-  {
-    title: "App de Gestion Scolaire",
-    category: "Programmation",
-    desc: "Logiciel de gestion des notes et absences pour les professeurs.",
-    tech: ["Java", "SQL", "Swing"],
-    icon: Database,
-    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=400",
-  },
-  {
-    title: "Workshop Web Design",
-    category: "Développement Web",
-    desc: "Série d'ateliers sur l'UI/UX design avec Figma et HTML/CSS.",
-    tech: ["Figma", "Design", "CSS"],
-    icon: Palette,
-    img: "https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?auto=format&fit=crop&q=80&w=400",
-  }
-];
+const catIcons: Record<string, any> = {
+  "Développement Web": Code,
+  "Intelligence Artificielle": Cpu,
+  "Supports Pédagogiques": Tag,
+  "Projets Éducatifs": Shield,
+  "Programmation": Database,
+};
 
 export default function Portfolio() {
   const [filter, setFilter] = useState("Tous");
+  const [projects, setProjects] = useState(getPortfolio);
+
+  useEffect(() => {
+    const handleStorage = () => setProjects(getPortfolio());
+    window.addEventListener('storage', handleStorage);
+    return () => window.removeEventListener('storage', handleStorage);
+  }, []);
 
   const filteredProjects = projects.filter(p => filter === "Tous" || p.category === filter);
 
@@ -115,7 +80,7 @@ export default function Portfolio() {
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, idx) => (
               <motion.div
-                key={project.title}
+                key={project.id || project.title}
                 layout
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
