@@ -5,15 +5,15 @@ const STORAGE_KEYS = {
 };
 
 const defaultResources = [
-  { level: '2apic', type: 'PDF', title: "Cours d'Algorithmique", slug: 'algo-pdf', downloads: 1240 },
-  { level: '2apic', type: 'Vidéo', title: 'Introduction au HTML', slug: 'html-intro-video', downloads: 850 },
-  { level: '2apic', type: 'Exercice', title: 'TP Tableur Excel', slug: 'excel-tp', downloads: 620 },
-  { level: '3apic', type: 'PDF', title: 'Base de données', slug: 'db-pdf', downloads: 2100 },
-  { level: '3apic', type: 'Exercice', title: 'Exercices SQL', slug: 'sql-exercises', downloads: 1540 },
-  { level: '3apic', type: 'Vidéo', title: 'Réseaux locaux (LAN)', slug: 'lan-video', downloads: 980 },
-  { level: 'tcl', type: 'PDF', title: "Système d'exploitation", slug: 'os-pdf', downloads: 3200 },
-  { level: 'tcl', type: 'Exercice', title: 'Maintenance PC', slug: 'pc-maint', downloads: 1100 },
-  { level: 'tcl', type: 'Vidéo', title: 'Algorithmique Avancée', slug: 'algo-adv', downloads: 2500 },
+  { level: '2apic', type: 'PDF', title: "Cours d'Algorithmique", slug: 'algo-pdf', downloads: 1240, url: '' },
+  { level: '2apic', type: 'Vidéo', title: 'Introduction au HTML', slug: 'html-intro-video', downloads: 850, url: '' },
+  { level: '2apic', type: 'Exercice', title: 'TP Tableur Excel', slug: 'excel-tp', downloads: 620, url: '' },
+  { level: '3apic', type: 'PDF', title: 'Base de données', slug: 'db-pdf', downloads: 2100, url: '' },
+  { level: '3apic', type: 'Exercice', title: 'Exercices SQL', slug: 'sql-exercises', downloads: 1540, url: '' },
+  { level: '3apic', type: 'Vidéo', title: 'Réseaux locaux (LAN)', slug: 'lan-video', downloads: 980, url: '' },
+  { level: 'tcl', type: 'PDF', title: "Système d'exploitation", slug: 'os-pdf', downloads: 3200, url: '' },
+  { level: 'tcl', type: 'Exercice', title: 'Maintenance PC', slug: 'pc-maint', downloads: 1100, url: '' },
+  { level: 'tcl', type: 'Vidéo', title: 'Algorithmique Avancée', slug: 'algo-adv', downloads: 2500, url: '' },
 ];
 
 const defaultPortfolio = [

@@ -5,7 +5,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Book, FileText, Download, Play, Search, Filter, Layers } from 'lucide-react';
+import { Book, FileText, Download, Play, Search, Filter, Layers, ExternalLink, X } from 'lucide-react';
 import { getResources } from '../lib/data';
 
 const levels = [
@@ -22,6 +22,7 @@ export default function Resources() {
   const [activeLevel, setActiveLevel] = useState('2apic');
   const [searchTerm, setSearchTerm] = useState('');
   const [resources, setResources] = useState(getResources);
+  const [viewer, setViewer] = useState<any>(null);
 
   useEffect(() => {
     const handleStorage = () => setResources(getResources());
@@ -135,8 +136,8 @@ export default function Resources() {
                     {(() => { const Ic = typeIcons[res.type] || Book; return <Ic size={14} className="text-emerald-600" />; })()}
                     {res.downloads} téléchargements
                   </div>
-                  <button className="w-full py-2 bg-slate-900  group-hover:bg-emerald-600 text-white rounded-lg text-xs font-bold transition-all">
-                    Consulter
+                  <button onClick={() => setViewer(res)} className="w-full py-2 bg-slate-900  group-hover:bg-emerald-600 text-white rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-2">
+                    Consulter <ExternalLink size={12} />
                   </button>
                 </div>
               </motion.div>
@@ -153,6 +154,54 @@ export default function Resources() {
           </div>
         )}
       </div>
+
+      {/* PDF Viewer Modal */}
+      <AnimatePresence>
+        {viewer && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4 md:p-8"
+            onClick={() => setViewer(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              onClick={e => e.stopPropagation()}
+              className="bg-white rounded-2xl w-full max-w-5xl max-h-[90vh] flex flex-col overflow-hidden shadow-2xl"
+            >
+              <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
+                <div>
+                  <h3 className="font-bold text-slate-900">{viewer.title}</h3>
+                  <p className="text-xs text-slate-400">{viewer.type} — {viewer.level}</p>
+                </div>
+                <button onClick={() => setViewer(null)} className="p-2 hover:bg-slate-100 rounded-xl transition-colors">
+                  <X size={20} />
+                </button>
+              </div>
+              <div className="flex-1 bg-slate-100 min-h-[60vh]">
+                {viewer.url ? (
+                  <iframe
+                    src={viewer.url}
+                    className="w-full h-full min-h-[60vh]"
+                    title={viewer.title}
+                  />
+                ) : (
+                  <div className="flex items-center justify-center h-full min-h-[60vh] text-slate-400">
+                    <div className="text-center">
+                      <FileText size={48} className="mx-auto mb-3 opacity-40" />
+                      <p className="font-medium">Aucun fichier lié pour le moment</p>
+                      <p className="text-xs mt-1">Ajoutez un lien PDF depuis l'espace enseignant</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

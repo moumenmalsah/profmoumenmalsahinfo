@@ -47,12 +47,12 @@ function ResourcesManager() {
   const [items, setItems] = useState(getResources);
   const [showForm, setShowForm] = useState(false);
   const [edit, setEdit] = useState<any>(null);
-  const [form, setForm] = useState({ level: '2apic', type: 'PDF', title: '', slug: '', downloads: 0 });
+  const [form, setForm] = useState({ level: '2apic', type: 'PDF', title: '', slug: '', downloads: 0, url: '' });
 
   const refresh = () => setItems(getResources());
 
-  const openNew = () => { setEdit(null); setForm({ level: '2apic', type: 'PDF', title: '', slug: '', downloads: 0 }); setShowForm(true); };
-  const openEdit = (item: any) => { setEdit(item); setForm({ level: item.level, type: item.type, title: item.title, slug: item.slug, downloads: item.downloads }); setShowForm(true); };
+  const openNew = () => { setEdit(null); setForm({ level: '2apic', type: 'PDF', title: '', slug: '', downloads: 0, url: '' }); setShowForm(true); };
+  const openEdit = (item: any) => { setEdit(item); setForm({ level: item.level, type: item.type, title: item.title, slug: item.slug, downloads: item.downloads, url: item.url || '' }); setShowForm(true); };
 
   const save = () => {
     let updated;
@@ -92,6 +92,7 @@ function ResourcesManager() {
             <input value={form.title} onChange={e => setForm({ ...form, title: e.target.value })} placeholder="Titre" className="px-3 py-2 rounded-lg bg-slate-50 border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-emerald-500 col-span-2" />
             <input value={form.downloads} onChange={e => setForm({ ...form, downloads: +e.target.value })} type="number" placeholder="Téléchargements" className="px-3 py-2 rounded-lg bg-slate-50 border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-emerald-500" />
           </div>
+          <input value={form.url} onChange={e => setForm({ ...form, url: e.target.value })} placeholder="Lien PDF / Vidéo (URL)" className="w-full px-3 py-2 rounded-lg bg-slate-50 border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-emerald-500" />
           <div className="flex gap-2">
             <button onClick={save} className="px-4 py-2 bg-emerald-600 text-white rounded-lg text-sm font-bold flex items-center gap-2 hover:bg-emerald-700"><Save size={16} /> {edit ? 'Modifier' : 'Ajouter'}</button>
             <button onClick={() => setShowForm(false)} className="px-4 py-2 bg-slate-100 text-slate-600 rounded-lg text-sm font-bold flex items-center gap-2 hover:bg-slate-200"><X size={16} /> Annuler</button>
