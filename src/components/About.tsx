@@ -27,7 +27,7 @@ export default function About() {
             <div className="absolute -top-10 -left-10 w-40 h-40 bg-brand-primary/10 rounded-full blur-2xl" />
             <div className="relative z-10 rounded-[2.5rem] overflow-hidden border-4 border-white  shadow-2xl">
               <img 
-                src="../../public/about_me.jpg" 
+                src="/hero.jpg" 
                 alt="Professeur Malsah Moumen" 
                 className="w-full aspect-[4/5] object-cover"
               />
